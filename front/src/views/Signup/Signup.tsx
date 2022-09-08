@@ -2,42 +2,34 @@ import React from "react";
 
 import { ApolloError } from "@apollo/client";
 
-type FormElements = {
-  emailInput: HTMLInputElement;
-  passwordInput: HTMLInputElement;
-} & HTMLFormControlsCollection;
-
-type SignupFormElement = {
-  readonly elements: FormElements;
-} & HTMLFormElement;
+import Form from "../../components/Form";
 
 type Props = {
   error?: ApolloError;
   loading: boolean;
   onSignup: (email: string, password: string) => void;
+  onClickSecondButton: () => void;
 };
 
-const Signup = ({ error, loading, onSignup }: Props): JSX.Element => {
-  const handleSubmit = (event: React.FormEvent<SignupFormElement>) => {
-    event.preventDefault();
-    const email = event.currentTarget.elements.emailInput.value;
-    const password = event.currentTarget.elements.passwordInput.value;
-    onSignup(email, password);
-  };
-
+const Signup = ({
+  error,
+  loading,
+  onSignup,
+  onClickSecondButton,
+}: Props): JSX.Element => {
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
     <div>
-      <h1>LOGIN</h1>
+      <h1>Signup</h1>
       <div>
-        <form onSubmit={handleSubmit}>
-          <input id="emailInput" type="email" required />
-          <input id="passwordInput" type="password" required />
-          <button type="submit">Signup</button>
-        </form>
+        <Form
+          onSubmit={({ email, password }) => onSignup(email, password)}
+          textSecondButton={"Login"}
+          onClickSecondButton={onClickSecondButton}
+        />
         {error && <p>{error.message}</p>}
       </div>
     </div>

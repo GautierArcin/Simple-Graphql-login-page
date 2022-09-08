@@ -30,19 +30,19 @@ const UserContextProvider = ({ children }: Props): JSX.Element => {
 
   const signOut = useCallback(() => {
     localStorage.removeItem(AUTH.token);
-    localStorage.removeItem(AUTH.user);
+    localStorage.removeItem(AUTH.email);
     setUser(null);
   }, []);
 
   const signIn = useCallback((user: string, token: string) => {
     localStorage.setItem(AUTH.token, token);
-    localStorage.setItem(AUTH.user, JSON.stringify(user));
+    localStorage.setItem(AUTH.email, JSON.stringify(user));
     setUser(user);
   }, []);
 
   useEffect(() => {
     const restoreUser = () => {
-      const user = localStorage.getItem(AUTH.user);
+      const user = localStorage.getItem(AUTH.email);
       if (user) {
         setUser(user);
       }

@@ -20,7 +20,7 @@ type LoginMutationResult = {
   };
 };
 
-const LoginCompound = (): JSX.Element => {
+const LoginWrapper = (): JSX.Element => {
   const { signIn } = useUserContext();
   const navigate = useNavigate();
   const [login, { error, loading }] = useMutation<
@@ -42,4 +42,4 @@ const LoginCompound = (): JSX.Element => {
   return <Login onLogin={handleLogin} loading={loading} error={error} />;
 };
 
-export default LoginCompound;
+export default LoginWrapper;

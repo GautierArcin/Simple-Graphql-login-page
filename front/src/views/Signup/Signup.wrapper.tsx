@@ -22,7 +22,7 @@ type SignupMutationResult = {
   };
 };
 
-const SignupCompound = (): JSX.Element => {
+const SignupWrapper = (): JSX.Element => {
   const { signIn } = useUserContext();
   const navigate = useNavigate();
   const [signup, { error, loading }] = useMutation<
@@ -41,7 +41,17 @@ const SignupCompound = (): JSX.Element => {
   const handleSignup = (email: string, password: string) => {
     signup({ variables: { email, password } });
   };
-  return <Signup onSignup={handleSignup} loading={loading} error={error} />;
+  const handleClickSecondButton = () => {
+    navigate("/login", { replace: true });
+  };
+  return (
+    <Signup
+      onSignup={handleSignup}
+      loading={loading}
+      error={error}
+      onClickSecondButton={handleClickSecondButton}
+    />
+  );
 };
 
-export default SignupCompound;
+export default SignupWrapper;
