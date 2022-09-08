@@ -25,7 +25,7 @@ type SignupMutationResult = {
 const SignupCompound = (): JSX.Element => {
   const { signIn } = useUserContext();
   const navigate = useNavigate();
-  const [login, { error, loading }] = useMutation<
+  const [signup, { error, loading }] = useMutation<
     SignupMutationResult,
     SignupMutationVariables
   >(SIGNUP, {
@@ -39,7 +39,7 @@ const SignupCompound = (): JSX.Element => {
     onError: () => {},
   });
   const handleSignup = (email: string, password: string) => {
-    login({ variables: { email, password } });
+    signup({ variables: { email, password } });
   };
   return <Signup onSignup={handleSignup} loading={loading} error={error} />;
 };

@@ -1,1 +1,1 @@
-export { default } from "./Signup.compound";
+export { default } from "./Signup.wrapper";

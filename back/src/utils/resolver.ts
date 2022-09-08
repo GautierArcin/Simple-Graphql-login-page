@@ -5,7 +5,7 @@ import * as jwt from "jsonwebtoken";
 import { APP_SECRET } from "../utils/auth";
 
 export const loginResolver = (email: string, password: string): string => {
-  // If we get an undefined, email is not registred in LUT
+  // If we get an undefined, email is not registred in LRU
   const localPassword = getUser(email);
 
   // User is not registred
@@ -30,7 +30,7 @@ export const loginResolver = (email: string, password: string): string => {
 };
 
 export const signupResolver = (email: string, password: string): string => {
-  // If we get an undefined, email is not registred in LUT
+  // If we get an undefined, email is not registred in LRU
   const localPassword = getUser(email);
 
   // Checking if email is valid
@@ -43,12 +43,11 @@ export const signupResolver = (email: string, password: string): string => {
     throw new Error("User already registred");
   }
 
-  // Adding user to Luterror
+  // Adding user to LRU
   setUser(email, password);
 
-  // We register user in LUT
   const token = jwt.sign({ email }, APP_SECRET, {
-    expiresIn: "30m",
+    // expiresIn: "30m",
   });
   return token;
 };

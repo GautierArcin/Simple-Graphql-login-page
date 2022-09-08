@@ -1,3 +1,4 @@
+import { TokenExpiredError } from "jsonwebtoken";
 import { decodeAuthHeader } from "../../src/utils/auth";
 import {
   afterEachHelperJest,
@@ -28,15 +29,23 @@ describe("Testing Authentification", () => {
     expect(error).toHaveProperty("message", "jwt malformed");
   });
 
-  const JWSTToken =
+  const JWTTokenExpired =
     "Bearer " +
-    "eyJhbGciOiJIUzI1NiJ9.cGVvcGxlVm94QGdtYWlsLmNvbQ.fvPmiWvjTI6a6xpwX0NOFvN9b2jGJBLypxKqJ3KGb-o";
-  it("As long as secret key wasn't modified, we should be able to decrypt an JWST key, and it should gives an email", async () => {
-    const error = await getError(async () => decodeAuthHeader(JWSTToken));
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhlbGxvMUBnbWFpbC5jb20iLCJpYXQiOjE2NjI2NjMxOTMsImV4cCI6MTY2MjY2NDk5M30.ox3t5KbdbnUH9Vu0jpnMcke3gigUh8_MwAtQnF_4bSQ";
+  it("As long as secret key wasn't modified, we should be able to check for expired token", async () => {
+    const error = await getError(async () => decodeAuthHeader(JWTTokenExpired));
+    expect(error).toBeInstanceOf(TokenExpiredError);
+  });
+
+  const JWTToken =
+    "Bearer " +
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhlbGxvMUBnbWFpbC5jb20iLCJpYXQiOjE2NjI2NjU5MTV9.jWXoSt4KQj0TNgGKtwrYE-VIuDgSumkb_g57OzNsJT4";
+  it("As long as secret key wasn't modified, we should be able to decrypt a JWT key, and it should give an email", async () => {
+    const error = await getError(async () => decodeAuthHeader(JWTToken));
     expect(error).toBeInstanceOf(NoErrorThrownError);
     // We call it a second time, since we don't have an error
-    expect(decodeAuthHeader(JWSTToken)).toMatchObject({
-      email: "peopleVox@gmail.com",
+    expect(decodeAuthHeader(JWTToken)).toMatchObject({
+      email: "hello1@gmail.com",
     });
   });
 });

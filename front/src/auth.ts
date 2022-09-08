@@ -1,7 +1,10 @@
+import { useQuery } from "@apollo/client";
+
+import { WHOAMI } from "./auth.query";
 import { AUTH } from "./constants";
 
 type decodedToken = {
-  userId: string;
+  email: string;
   iat: number;
   exp: number;
 };
@@ -19,5 +22,6 @@ export const isAuthenticated = () => {
 
   const epochTS = Math.round(new Date().getTime() / 1000);
   console.log(epochTS < token.exp);
+
   return epochTS < token.exp;
 };

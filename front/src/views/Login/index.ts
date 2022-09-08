@@ -1,1 +1,1 @@
-export { default } from "./Login.compound";
+export { default } from "./Login.wrapper";

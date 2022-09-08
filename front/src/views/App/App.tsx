@@ -15,8 +15,8 @@ const App = (): JSX.Element => {
     // Necessary considering the loading time
     <Suspense fallback={<p>Loading</p>}>
       <Routes>
-        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
         <Route
           path="/"
           element={

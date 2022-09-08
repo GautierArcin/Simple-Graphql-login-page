@@ -1,8 +1,8 @@
-import React from "react";
-
+import { useQuery } from "@apollo/client";
 import { Navigate, useLocation } from "react-router-dom";
 
 import { isAuthenticated } from "../../auth";
+import { WHOAMI } from "../../auth.query";
 
 type Props = {
   children: JSX.Element;
@@ -10,9 +10,25 @@ type Props = {
 
 const ProtectedRoute = ({ children }: Props): JSX.Element => {
   const location = useLocation();
-  if (isAuthenticated()) {
+
+  // If token expired, it's not worth it to check for graphql server
+  if (!isAuthenticated()) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  // Disabling eslint next line: no need to use the hook each time
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { loading, error, data } = useQuery(WHOAMI);
+  if (loading) {
+    return <p>Loading</p>;
+  }
+
+  if (data) {
+    console.log("data 1  ", data, ", ", error);
     return children;
   }
+  console.log("data 2 ", data, ", ", error);
+
   return <Navigate to="/login" state={{ from: location }} replace />;
 };
 
