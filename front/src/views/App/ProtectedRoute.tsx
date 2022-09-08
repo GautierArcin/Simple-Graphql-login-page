@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import { CircularProgress } from "@material-ui/core";
 import { Navigate, useLocation } from "react-router-dom";
 
 import { isAuthenticated } from "../../auth";
@@ -20,7 +21,7 @@ const ProtectedRoute = ({ children }: Props): JSX.Element => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { loading, error, data } = useQuery(WHOAMI);
   if (loading) {
-    return <p>Loading</p>;
+    return <CircularProgress />;
   }
 
   if (data) {

@@ -26,7 +26,7 @@ const UserContext = createContext<Context>({
 });
 
 const UserContextProvider = ({ children }: Props): JSX.Element => {
-  const [user, setUser] = useState<string | null>(null);
+  const [user, setUser] = useState<any | null>(null);
 
   const signOut = useCallback(() => {
     localStorage.removeItem(AUTH.token);
@@ -34,10 +34,10 @@ const UserContextProvider = ({ children }: Props): JSX.Element => {
     setUser(null);
   }, []);
 
-  const signIn = useCallback((user: string, token: string) => {
+  const signIn = useCallback((user: any, token: string) => {
     localStorage.setItem(AUTH.token, token);
     localStorage.setItem(AUTH.email, JSON.stringify(user));
-    setUser(user);
+    setUser(user.email);
   }, []);
 
   useEffect(() => {
