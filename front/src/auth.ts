@@ -1,6 +1,3 @@
-import { useQuery } from "@apollo/client";
-
-import { WHOAMI } from "./auth.query";
 import { AUTH } from "./constants";
 
 type decodedToken = {
