@@ -25,10 +25,8 @@ const ProtectedRoute = ({ children }: Props): JSX.Element => {
   }
 
   if (data) {
-    console.log("data 1  ", data, ", ", error);
     return children;
   }
-  console.log("data 2 ", data, ", ", error);
 
   return <Navigate to="/login" state={{ from: location }} replace />;
 };

@@ -32,7 +32,6 @@ const SignupWrapper = (): JSX.Element => {
     onCompleted: (data) => {
       const token = data.signup.token;
       const user = data.signup.user.email;
-      console.log("signed up ! ");
       signIn(user, token);
       navigate("/", { replace: true });
     },

@@ -13,9 +13,7 @@ export const isAuthenticated = () => {
   if (!accessToken) {
     return false;
   }
-  console.log("Token : ", accessToken);
   const token: decodedToken = JSON.parse(atob(accessToken.split(".")[1]));
-  console.log("decoded token : ", token);
 
   const epochTS = Math.round(new Date().getTime() / 1000);
   console.log(epochTS < token.exp);
