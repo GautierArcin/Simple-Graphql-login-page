@@ -85,18 +85,13 @@ export const Form = ({
           <Grid item xs={12}>
             <Grid
               container
-              spacing={2}
+              spacing={6}
               direction={"row"}
               justifyContent={"space-between"}
               alignItems={"center"}
             >
               <Grid item md={4} xs={12}>
-                <Button
-                  color="secondary"
-                  variant="contained"
-                  fullWidth
-                  type="submit"
-                >
+                <Button color="secondary" variant="contained" type="submit">
                   Submit
                 </Button>
               </Grid>
@@ -104,7 +99,6 @@ export const Form = ({
                 <Button
                   color="primary"
                   variant="outlined"
-                  fullWidth
                   onClick={onClickSecondButton}
                 >
                   {textSecondButton}

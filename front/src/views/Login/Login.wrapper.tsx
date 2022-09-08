@@ -39,7 +39,18 @@ const LoginWrapper = (): JSX.Element => {
   const handleLogin = (email: string, password: string) => {
     login({ variables: { email, password } });
   };
-  return <Login onLogin={handleLogin} loading={loading} error={error} />;
+  const onClickSecondButton = () => {
+    navigate("/signup", { replace: true });
+  };
+  return (
+    <Login
+      onLogin={handleLogin}
+      loading={loading}
+      error={error}
+      onClickSecondButton={onClickSecondButton}
+      textSecondButton={"Register"}
+    />
+  );
 };
 
 export default LoginWrapper;
