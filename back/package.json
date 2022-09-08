@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec ts-node ./server.ts --watch",
+    "test": "jest && nodemon --exec ts-node ./server.ts --watch",
+    "devOnly": "jest && nodemon --exec ts-node ./server.ts --watch",
     "type": "npx graphql-codegen",
     "lint": "eslint . --ext .ts",
-    "test": "jest"
+    "testOnly": "jest"
   },
   "keywords": [],
   "author": "",

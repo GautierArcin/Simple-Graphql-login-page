@@ -8,11 +8,6 @@ export const loginResolver = (email: string, password: string): string => {
   // If we get an undefined, email is not registred in LUT
   const localPassword = getUser(email);
 
-  // Checking if email is valid
-  if (!validateEmail(email)) {
-    throw new Error("Invalid mail");
-  }
-
   // User is not registred
   if (localPassword === undefined) {
     throw new Error("User undefined");
@@ -28,7 +23,9 @@ export const loginResolver = (email: string, password: string): string => {
   // Because it's just a very simple exercice, and that we don't
   // accord any consideration to security, we use
   // email instead
-  const token = jwt.sign(email, APP_SECRET);
+  const token = jwt.sign({ email }, APP_SECRET, {
+    expiresIn: "30m",
+  });
   return token;
 };
 
@@ -46,10 +43,12 @@ export const signupResolver = (email: string, password: string): string => {
     throw new Error("User already registred");
   }
 
-  // Adding user to Lut
+  // Adding user to Luterror
   setUser(email, password);
 
   // We register user in LUT
-  const token = jwt.sign(email, APP_SECRET);
+  const token = jwt.sign({ email }, APP_SECRET, {
+    expiresIn: "30m",
+  });
   return token;
 };
