@@ -1,9 +1,3 @@
-const today = new Date();
-const time =
-  today.getHours().toString() +
-  today.getMinutes().toString() +
-  today.getSeconds().toString();
-
 describe("Register", () => {
   describe("Form checking", () => {
     it("We should have an helper label on email if the email is invalid", () => {
@@ -37,7 +31,7 @@ describe("Register", () => {
       // Default values should give an error on password
       cy.get("input[name=email]")
         .type("{selectAll}")
-        .type("peopleVox" + time + "@example.com")
+        .type("peopleVox1234@example.com")
         .type("{enter}");
 
       cy.get("input[name=password]")
@@ -45,7 +39,7 @@ describe("Register", () => {
         .type("password")
         .type("{enter}");
 
-      cy.location("pathname").should("include", "/login");
+      cy.location("pathname").should("include", "/");
     });
 
     it("We should not be able to sign up the same account twice", () => {
@@ -54,7 +48,7 @@ describe("Register", () => {
       // Default values should give an error on password
       cy.get("input[name=email]")
         .type("{selectAll}")
-        .type("peopleVox" + time + "@example.com")
+        .type("peopleVox1234@example.com")
         .type("{enter}");
 
       cy.get("input[name=password]")
@@ -64,9 +58,9 @@ describe("Register", () => {
 
       cy.location("pathname").should("include", "/signup");
 
-      cy.get("h2[id=welcome-text]").should(
+      cy.get("p[id=error-apollo]").should(
         "have.text",
-        "Bienvenue E2Etesting@example.com !"
+        "User already registred"
       );
     });
   });
