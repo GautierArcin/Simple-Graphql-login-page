@@ -22,6 +22,9 @@ export const setUser: (arg0: string, arg1: string) => void = (
   password: string
 ) => userCache.set(email, password);
 
+// Setting default user for E2E testing purpose
+setUser("E2Etesting@example.com", "test123456");
+
 // Function only for testing purpose
 export const clearCache = () => {
   // Note: I was stuck there for something like 20 min

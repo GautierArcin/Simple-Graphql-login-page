@@ -37,6 +37,20 @@ describe("Testing Authentification", () => {
     expect(error).toBeInstanceOf(TokenExpiredError);
   });
 
+  const JSWTTokenStringOnly =
+    "Bearer " +
+    "eyJhbGciOiJIUzI1NiJ9.Z2F1dGE4MzJAZ21haWwuY29t.H1H0-RWjAvC9eQRvE2UWipG8YaJunCCdd2rsAc3dstU";
+  it("As long as secret key wasn't modified, we should be able to decrypt a JWT key, and it should give an email", async () => {
+    const error = await getError(async () =>
+      decodeAuthHeader(JSWTTokenStringOnly)
+    );
+    expect(error).not.toBeInstanceOf(NoErrorThrownError);
+    expect(error).toHaveProperty(
+      "message",
+      "JWT token should not be only a string"
+    );
+  });
+
   const JWTToken =
     "Bearer " +
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhlbGxvMUBnbWFpbC5jb20iLCJpYXQiOjE2NjI2NjU5MTV9.jWXoSt4KQj0TNgGKtwrYE-VIuDgSumkb_g57OzNsJT4";

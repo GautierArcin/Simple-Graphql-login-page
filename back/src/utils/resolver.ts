@@ -47,7 +47,7 @@ export const signupResolver = (email: string, password: string): string => {
   setUser(email, password);
 
   const token = jwt.sign({ email }, APP_SECRET, {
-    // expiresIn: "30m",
+    expiresIn: "30m",
   });
   return token;
 };
