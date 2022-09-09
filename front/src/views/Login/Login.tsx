@@ -56,8 +56,8 @@ const Login = ({
             onSubmit={({ email, password }) => onLogin(email, password)}
             textSecondButton={textSecondButton}
             onClickSecondButton={onClickSecondButton}
+            error={error}
           />
-          {error && <p>{error.message}</p>}
         </div>
       </Paper>
     </div>

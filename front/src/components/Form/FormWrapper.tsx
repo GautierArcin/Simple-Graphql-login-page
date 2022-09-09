@@ -1,3 +1,4 @@
+import { ApolloError } from "@apollo/client";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -9,12 +10,14 @@ import { Form } from "./Form";
 type FormWrapperVariable = {
   onSubmit: ({ email, password }: { email: string; password: string }) => void;
   textSecondButton: string;
+  error?: ApolloError;
   onClickSecondButton: () => void;
 };
 
 const FormWrapper = ({
   onSubmit,
   textSecondButton,
+  error,
   onClickSecondButton,
 }: FormWrapperVariable) => {
   const validationSchema = yup.object({
@@ -41,6 +44,7 @@ const FormWrapper = ({
   return (
     <Form
       formik={formik}
+      error={error}
       textSecondButton={textSecondButton}
       onClickSecondButton={onClickSecondButton}
     />

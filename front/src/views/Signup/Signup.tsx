@@ -54,8 +54,9 @@ const Signup = ({
             onSubmit={({ email, password }) => onSignup(email, password)}
             textSecondButton={"Already have an account ?"}
             onClickSecondButton={onClickSecondButton}
+            error={error}
           />
-          {error && <p>{error.message}</p>}
+          {/* {error && <p>{error.message}</p>} */}
         </div>
       </Paper>
     </div>

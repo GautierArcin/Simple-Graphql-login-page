@@ -14,8 +14,13 @@ const Home = (): JSX.Element => {
     <div>
       <h1>Home</h1>
       <br />
-      <h2>Bienvenue {user} ! </h2>
-      <Button color="secondary" variant="contained" onClick={onClick}>
+      <h2 id="welcome-text">Bienvenue {user} ! </h2>
+      <Button
+        id="log-out"
+        color="secondary"
+        variant="contained"
+        onClick={onClick}
+      >
         Log Out
       </Button>
     </div>

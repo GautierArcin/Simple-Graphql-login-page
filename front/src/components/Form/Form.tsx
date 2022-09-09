@@ -1,4 +1,5 @@
-import { Button, TextField, Grid, Link } from "@material-ui/core";
+import { ApolloError } from "@apollo/client";
+import { Button, TextField, Grid, Link, Typography } from "@material-ui/core";
 import SendIcon from "@mui/icons-material/Send";
 
 // Taken from https://formik.org/docs/examples/with-material-ui
@@ -7,10 +8,12 @@ import SendIcon from "@mui/icons-material/Send";
 export const Form = ({
   formik,
   textSecondButton,
+  error,
   onClickSecondButton,
 }: {
   formik: any;
   textSecondButton: string;
+  error?: ApolloError;
   onClickSecondButton: () => void;
 }) => (
   <div>
@@ -41,7 +44,9 @@ export const Form = ({
             label="Email"
             value={formik.values.email}
             onChange={formik.handleChange}
-            error={formik.touched.email && Boolean(formik.errors.email)}
+            error={
+              (formik.touched.email && Boolean(formik.errors.email)) || error
+            }
             helperText={(formik.touched.email && formik.errors.email) || " "}
             inputProps={{ style: { fontSize: 24 } }} // font size of input text
             InputLabelProps={{ style: { fontSize: 18 } }} // font size of input label
@@ -64,7 +69,10 @@ export const Form = ({
             type="password"
             value={formik.values.password}
             onChange={formik.handleChange}
-            error={formik.touched.password && Boolean(formik.errors.password)}
+            error={
+              (formik.touched.password && Boolean(formik.errors.password)) ||
+              error
+            }
             helperText={
               (formik.touched.password && formik.errors.password) || " "
             }
@@ -100,6 +108,15 @@ export const Form = ({
               </Link>
             </Grid>
           </Grid>
+          {error && (
+            <Typography
+              align="center"
+              style={{ paddingTop: "16px", color: "red" }}
+              id="error-apollo"
+            >
+              {error.message}
+            </Typography>
+          )}
         </Grid>
       </Grid>
     </form>
