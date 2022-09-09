@@ -19,7 +19,7 @@ const ProtectedRoute = ({ children }: Props): JSX.Element => {
 
   // Disabling eslint next line: no need to use the hook each time
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { loading, error, data } = useQuery(WHOAMI);
+  const { loading, data } = useQuery(WHOAMI);
   if (loading) {
     return <CircularProgress />;
   }

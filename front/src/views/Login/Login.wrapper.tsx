@@ -48,7 +48,7 @@ const LoginWrapper = (): JSX.Element => {
       loading={loading}
       error={error}
       onClickSecondButton={onClickSecondButton}
-      textSecondButton={"Register"}
+      textSecondButton={"Don't have an account ?"}
     />
   );
 };
