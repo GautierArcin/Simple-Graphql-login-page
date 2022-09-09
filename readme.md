@@ -2,7 +2,7 @@
 
 
 
-![images/1.png](/media/gautier/datashared/Travail/web/gitPeopleVox/images/1.png)
+![images/1.png](./images/1.png)
 
 
 
