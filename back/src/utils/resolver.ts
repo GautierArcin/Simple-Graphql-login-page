@@ -2,7 +2,7 @@ import { setUser, getUser } from "../database/database";
 import { validateEmail } from "./utils";
 
 import * as jwt from "jsonwebtoken";
-import { APP_SECRET } from "../utils/auth";
+import { APP_SECRET } from "../utils/env";
 
 export const loginResolver = (email: string, password: string): string => {
   // If we get an undefined, email is not registred in LRU
