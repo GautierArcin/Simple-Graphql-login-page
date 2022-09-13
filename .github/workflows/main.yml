@@ -2,21 +2,21 @@ name: simple-github-action
 on:
   push:
     branches:
-      - 'master'
+      - "main"
   pull_request:
-  
+
 jobs:
   basic-ubuntu-20:
     runs-on: ubuntu-20.04
     steps:
-        
       - name: Use Node.js 16.x
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
-          cache: 'npm'
-          cache-dependency-path: package-lock.json
-          
+
+      - name: Checking out repo
+        uses: actions/checkout@v2
+
       - name: Install server dependencies
         working-directory: ./back
         run: npm ci
