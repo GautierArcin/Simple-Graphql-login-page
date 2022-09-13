@@ -28,8 +28,9 @@
     "lint": "eslint --cache --fix --ext './**/*.{js,ts,tsx,jsx}' --format=pretty ./",
     "generate": "graphql-codegen",
     "start-server": "npm start",
+    "start-front-and-back": "concurrently \"npm start\" \"cd .. && npm run server\"",
     "cy:run": "cypress run",
-    "test": "start-server-and-test start-server '3000|http-get://localhost:4000/graphql?query={ __schema { queryType { name } } }' cy:run"
+    "test": "start-server-and-test start-front-and-back '3000|http-get://localhost:4000/graphql?query={ __schema { queryType { name } } }' cy:run"
   },
   "browserslist": {
     "production": [
@@ -53,6 +54,7 @@
     "@types/node": "^12.20.37",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
+    "concurrently": "^7.4.0",
     "cypress": "^10.7.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
