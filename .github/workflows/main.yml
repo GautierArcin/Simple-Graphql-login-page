@@ -1,0 +1,32 @@
+name: simple-github-action
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+  
+jobs:
+  basic-ubuntu-20:
+    runs-on: ubuntu-20.04
+    steps:
+        
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+          
+      - name: Install server dependencies
+        working-directory: ./back
+        run: npm ci
+
+      - name: Install client dependencies
+        working-directory: ./front
+        run: npm ci
+
+      - name: Cypress tests
+        uses: cypress-io/github-action@v4
+        with:
+          working-directory: front
+          start: npm test
