@@ -28,7 +28,7 @@
     "lint": "eslint --cache --fix --ext './**/*.{js,ts,tsx,jsx}' --format=pretty ./",
     "generate": "graphql-codegen",
     "start-server": "npm start",
-    "start-front-and-back": "concurrently \"npm start\" \"cd .. && npm run server\"",
+    "start-front-and-back": "concurrently \"npm start\" \"cd ../back && npm test\"",
     "cy:run": "cypress run",
     "test": "start-server-and-test start-front-and-back '3000|http-get://localhost:4000/graphql?query={ __schema { queryType { name } } }' cy:run"
   },
