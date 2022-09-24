@@ -1,10 +1,10 @@
-# Test People Vox
+# Page de Login / Enregistrement simple
 
 ![images/1.png](./images/1.png)
 
 ## Sommaire
 
-Simple test de login / enregistrement par token JWT, avec:
+Un site très simple (avec front & backend) de login / enregistrement par token JWT, utilisant les technologies suivantes:
 
 - React en front
 - Graphql (Apollo) en back
@@ -26,12 +26,6 @@ La LUT (qui sert de BDD) stock les utilisateurs par Record<string,string> de typ
 
 Un soin particulier à été apporté sur l'organisation du code, en décorrélant au maximum la logique métier des vues, l'avantage de ceci étant d'avoir des composants purs permettant des tests d'UI plus facile (non effectuées ici).
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 87c2ba4... Update readme.md
 ## Pistes d'améliorations
 
 - Améliorer l'UI du form:
