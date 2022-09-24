@@ -1,6 +1,7 @@
 describe("Register", () => {
   describe("Form checking", () => {
     it("We should have an helper label on email if the email is invalid", () => {
+      cy.wait(500) // Wait for github actions   
       cy.visit("localhost:3000/signup");
 
       // Default values should give an error on password
